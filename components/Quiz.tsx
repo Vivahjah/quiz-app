@@ -5,6 +5,8 @@ import { Question, QuizState } from '@/types/quiz';
 import { quizData } from '@/data/quizData';
 
 export default function Quiz() {
+
+    //Track quiz state
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -13,11 +15,16 @@ export default function Quiz() {
     isQuizCompleted: false,
   });
 
+
+  //Keep track of current question
   const currentQuestion: Question = quizData[quizState.currentQuestionIndex];
 
+
+  //Handle answer selection
   const handleAnswerSelect = (optionIndex: number) => {
     if (quizState.showExplanation) return;
 
+    //Update state based on answer selection
     setQuizState(prev => ({
       ...prev,
       selectedAnswer: optionIndex,
@@ -26,8 +33,10 @@ export default function Quiz() {
     }));
   };
 
+  //Handle next question
   const handleNextQuestion = () => {
     if (quizState.currentQuestionIndex < quizData.length - 1) {
+    //Move to next question
       setQuizState(prev => ({
         ...prev,
         currentQuestionIndex: prev.currentQuestionIndex + 1,
@@ -42,6 +51,8 @@ export default function Quiz() {
     }
   };
 
+
+  //Handle quiz restart
   const handleRestartQuiz = () => {
     setQuizState({
       currentQuestionIndex: 0,
