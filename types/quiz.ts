@@ -3,11 +3,13 @@ export interface Question {
   question: string;
   options: string[];
   correctAnswer: number;
+  explanation: string;
 }
 
 export interface QuizState {
   currentQuestionIndex: number;
   score: number;
-  showResult: boolean;
+  showExplanation: boolean;
   selectedAnswer: number | null;
+  isQuizCompleted: boolean;
 }
